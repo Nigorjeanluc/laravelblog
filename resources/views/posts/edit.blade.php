@@ -4,12 +4,25 @@
 
 @section('stylesheets')
     {!! Html::style('/css/select2.min.css') !!}
+    <script src="/js/tiny/tinymce.min.js"></script>
+
+    <script>
+        tinymce.init({
+            selector: 'textarea',
+            plugins: 'link lists code image imagetools',
+            menubar: false,
+            /*menu: {
+                view: {title: 'Edit', items: 'cut, copy, paste'}
+            }*/
+            /*toolbar: 'undo redo | cut copy paste'*/
+        });
+    </script>
 @endsection
 
 @section('content')
 
     <div class="row">
-        {!! Form::model($post, ['route' => ['posts.update', $post->id], 'method' => 'PUT']) !!}
+        {!! Form::model($post, ['route' => ['posts.update', $post->id], 'method' => 'PUT', 'files' => true]) !!}
         <div class="col-md-8">
             <div class="form-group">
                 {{ Form::label('title', 'Title:') }}
@@ -29,6 +42,11 @@
             <div class="form-group">
                 {{ Form::label('tags', 'Tags:') }}
                 {{ Form::select('tags[]', $tags, null, ['class' =>'form-control select2-multi', 'multiple' => 'multiple']) }}
+            </div>
+
+            <div class="form-group">
+                {{ Form::label('featured_image', 'Update Featured Image:') }}
+                {{ Form::file('featured_image') }}
             </div>
 
             <div class="form-group">

@@ -12,6 +12,7 @@
                     <tr>
                         <th>#</th>
                         <th>Name</th>
+                        <th></th>
                     </tr>
                 </thead>
 
@@ -19,7 +20,10 @@
                     @foreach ($tags as $tag)
                         <tr>
                             <td>{{ $tag->id }}</td>
-                            <td>{{ $tag->name }}</td>
+                            <td><a href="{{ route('tags.show', $tag->id) }}">{{ $tag->name }}</a></td>
+                            <td>
+                                <a href="{{ route('tags.show', $tag->id) }}" class="btn btn-default">View</a>
+                            </td>
                         </tr>
                     @endforeach
                 </tbody>

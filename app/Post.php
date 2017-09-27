@@ -15,6 +15,11 @@ class Post extends Model
     {
         return $this->belongsToMany('App\Tag');
     }
+
+    public function comments()
+    {
+        return $this->hasMany('App\Comment');
+    }
 }
 
 //Post::where('title' => 'My First Title')->get();
